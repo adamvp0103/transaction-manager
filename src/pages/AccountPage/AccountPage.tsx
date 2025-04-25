@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Nav from '../../components/Nav/Nav';
 import { removeCategory } from '../../features/categories/categoriesSlice';
@@ -10,6 +11,12 @@ function AccountPage() {
     state.users.users.find((u) => u.username === currentUser)
   );
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate('/'); // Return to transactions (home) page for next user
+    dispatch(logout());
+  };
 
   const handleDeleteAccount = () => {
     const userCategories = useAppSelector((state) =>
@@ -30,6 +37,7 @@ function AccountPage() {
     });
 
     // Delete user's account
+    navigate('/'); // Return to transactions (home) page for next user
     dispatch(deleteUser(currentUser as string));
   };
 
@@ -37,7 +45,7 @@ function AccountPage() {
     <div>
       <h2>Account</h2>
       <p>Hello, {userData?.name}</p>
-      <button onClick={() => dispatch(logout())}>Log Out</button>
+      <button onClick={handleLogout}>Log Out</button>
       <button onClick={handleDeleteAccount}>Delete Account</button>
       <Nav />
     </div>
