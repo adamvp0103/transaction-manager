@@ -40,8 +40,12 @@ const usersSlice = createSlice({
     logout: (state) => {
       state.currentUser = null;
     },
+    deleteUser: (state, action: PayloadAction<string>) => {
+      if (state.currentUser === action.payload) state.currentUser = null; // Log out if logged in
+      state.users = state.users.filter((u) => u.username !== action.payload);
+    },
   },
 });
 
-export const { register, login, logout } = usersSlice.actions;
+export const { register, login, logout, deleteUser } = usersSlice.actions;
 export default usersSlice.reducer;
