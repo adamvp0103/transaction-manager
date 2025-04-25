@@ -10,6 +10,12 @@ function AccountPage() {
   const userData = useAppSelector((state) =>
     state.users.users.find((u) => u.username === currentUser)
   );
+  const userCategories = useAppSelector((state) =>
+    state.categories.categories.filter((c) => c.username === currentUser)
+  );
+  const userTransactions = useAppSelector((state) =>
+    state.transactions.transactions.filter((t) => t.username === currentUser)
+  );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -18,14 +24,7 @@ function AccountPage() {
     dispatch(logout());
   };
 
-  const handleDeleteAccount = () => {
-    const userCategories = useAppSelector((state) =>
-      state.categories.categories.filter((c) => c.username === currentUser)
-    );
-    const userTransactions = useAppSelector((state) =>
-      state.transactions.transactions.filter((t) => t.username === currentUser)
-    );
-
+  const handleResetAccount = () => {
     // Remove user's categories
     userCategories.forEach((c) => {
       dispatch(removeCategory(c.id));
@@ -35,6 +34,10 @@ function AccountPage() {
     userTransactions.forEach((t) => {
       dispatch(deleteTransaction(t.id));
     });
+  };
+
+  const handleDeleteAccount = () => {
+    handleResetAccount();
 
     // Delete user's account
     navigate('/'); // Return to transactions (home) page for next user
@@ -46,6 +49,7 @@ function AccountPage() {
       <h2>Account</h2>
       <p>Hello, {userData?.name}</p>
       <button onClick={handleLogout}>Log Out</button>
+      <button onClick={handleResetAccount}>Reset Account</button>
       <button onClick={handleDeleteAccount}>Delete Account</button>
       <Nav />
     </div>
