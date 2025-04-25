@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface Transaction {
+export interface Transaction {
   id: string;
   type: 'income' | 'expense';
   amount: number;
@@ -23,7 +23,7 @@ const transactionsSlice = createSlice({
   initialState,
   reducers: {
     addTransaction: (state, action: PayloadAction<Transaction>) => {
-      state.transactions.push(action.payload);
+      state.transactions = [action.payload, ...state.transactions];
     },
     deleteTransaction: (state, action: PayloadAction<string>) => {
       state.transactions = state.transactions.filter(

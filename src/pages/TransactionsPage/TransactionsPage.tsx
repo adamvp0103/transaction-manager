@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Nav from '../../components/Nav/Nav';
 import TransactionForm from '../../components/TransactionForm/TransactionForm';
 import { useAppSelector } from '../../app/hooks';
+import TransactionListing from '../../components/TransactionListing/TransactionListing';
 
 function TransactionsPage() {
   const currentUser = useAppSelector((state) => state.users.currentUser);
@@ -23,7 +24,7 @@ function TransactionsPage() {
 
       <ul>
         {userTransactions.map((t) => (
-          <li key={t.id}>{/* TODO: Add transaction data here */}</li>
+          <TransactionListing transaction={t} />
         ))}
       </ul>
 

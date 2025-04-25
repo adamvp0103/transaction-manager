@@ -34,8 +34,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onClose }) => {
         id: crypto.randomUUID(),
         type: isExpense ? 'expense' : 'income',
         amount: parseFloat(amount),
-        party,
-        date,
+        party: party.trim().toUpperCase(),
+        date: new Date(date).toLocaleDateString(),
         categoryId: category,
         username: currentUser as string,
       })

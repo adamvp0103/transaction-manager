@@ -18,15 +18,17 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
   const [cat, setCat] = useState('');
 
   const handleAdd = () => {
+    const catId = crypto.randomUUID();
+
     dispatch(
       addCategory({
-        id: crypto.randomUUID(),
+        id: catId,
         name: cat.trim().toUpperCase(),
         type: isExpense ? 'expense' : 'income',
         username: currentUser as string,
       })
     );
-    setCategory(cat.trim().toUpperCase());
+    setCategory(catId);
     onClose();
   };
 
