@@ -40,7 +40,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onClose }) => {
         type: isExpense ? 'expense' : 'income',
         amount: parseFloat(amount),
         party: party.trim().toUpperCase(),
-        date: new Date(date).toLocaleDateString(),
+        date,
         categoryId: category,
         username: currentUser as string,
       })

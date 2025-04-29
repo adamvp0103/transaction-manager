@@ -9,6 +9,9 @@ function TransactionsPage() {
   const userTransactions = useAppSelector((state) =>
     state.transactions.transactions.filter((t) => t.username === currentUser)
   );
+  const sortedTransactions = userTransactions.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
   const [showTransactionForm, setShowTransactionForm] = useState(false);
 
   if (showTransactionForm)
@@ -23,7 +26,7 @@ function TransactionsPage() {
       </button>
 
       <ul>
-        {userTransactions.map((t) => (
+        {sortedTransactions.map((t) => (
           <TransactionListing transaction={t} />
         ))}
       </ul>
