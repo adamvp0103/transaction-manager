@@ -29,6 +29,11 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onClose }) => {
   const [showCategoryForm, setShowCategoryForm] = useState(false);
 
   const handleAdd = () => {
+    if (!category) {
+      alert('Please select a category.');
+      return;
+    }
+
     dispatch(
       addTransaction({
         id: crypto.randomUUID(),
