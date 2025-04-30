@@ -19,6 +19,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onClose }) => {
   const userCategories = useAppSelector((state) =>
     state.categories.categories.filter((c) => c.username === currentUser)
   );
+  const incomeCategories = userCategories.filter((c) => c.type === 'income');
+  const expenseCategories = userCategories.filter((c) => c.type === 'expense');
   const dispatch = useAppDispatch();
 
   const [isExpense, setIsExpense] = useState(false);
@@ -27,6 +29,10 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onClose }) => {
   const [date, setDate] = useState(formatDate(new Date()));
   const [category, setCategory] = useState('');
   const [showCategoryForm, setShowCategoryForm] = useState(false);
+
+  const addCategoryAllowed = isExpense
+    ? expenseCategories.length < 10
+    : incomeCategories.length < 10;
 
   const handleAdd = () => {
     if (!category) {
@@ -106,11 +112,15 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onClose }) => {
             key={c.id}
             disabled={c.id === category}
             onClick={() => setCategory(c.id)}
+            style={{ backgroundColor: c.color }}
           >
             {c.name.toUpperCase()}
           </button>
         ))}
-      <button onClick={() => setShowCategoryForm(true)}>Add Category</button>
+      {/* Limit to 10 categories per type per user */}
+      {addCategoryAllowed && (
+        <button onClick={() => setShowCategoryForm(true)}>Add Category</button>
+      )}
 
       <button onClick={handleAdd}>Add</button>
     </div>

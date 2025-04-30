@@ -26,6 +26,7 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = ({
             .filter((t) => t.categoryId === c.id)
             .reduce((prev, curr) => prev + curr.amount, 0)
         ),
+        backgroundColor: categories.map((c) => c.color),
       },
     ],
   };

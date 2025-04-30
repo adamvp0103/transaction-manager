@@ -5,6 +5,7 @@ export interface Category {
   name: string;
   type: 'income' | 'expense';
   username: string;
+  color: string;
 }
 
 interface CategoriesState {
