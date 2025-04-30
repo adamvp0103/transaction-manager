@@ -4,6 +4,8 @@ import Nav from '../../components/Nav/Nav';
 import { removeCategory } from '../../features/categories/categoriesSlice';
 import { deleteTransaction } from '../../features/transactions/transactionsSlice';
 import { deleteUser, logout } from '../../features/users/usersSlice';
+import { useState } from 'react';
+import CategorySettings from '../../components/CategorySettings/CategorySettings';
 
 function AccountPage() {
   const currentUser = useAppSelector((state) => state.users.currentUser);
@@ -18,6 +20,8 @@ function AccountPage() {
   );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const [showCategorySettings, setShowCategorySettings] = useState(false);
 
   const handleLogout = () => {
     navigate('/'); // Return to transactions (home) page for next user
@@ -44,10 +48,14 @@ function AccountPage() {
     dispatch(deleteUser(currentUser as string));
   };
 
+  if (showCategorySettings)
+    return <CategorySettings onClose={() => setShowCategorySettings(false)} />;
+
   return (
     <div>
       <h2>Account</h2>
       <p>Hello, {userData?.name}</p>
+      <button onClick={() => setShowCategorySettings(true)}>Categories</button>
       <button onClick={handleLogout}>Log Out</button>
       <button onClick={handleResetAccount}>Reset Account</button>
       <button onClick={handleDeleteAccount}>Delete Account</button>
