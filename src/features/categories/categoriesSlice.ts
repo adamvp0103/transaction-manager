@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface Category {
+export interface Category {
   id: string;
   name: string;
   type: 'income' | 'expense';

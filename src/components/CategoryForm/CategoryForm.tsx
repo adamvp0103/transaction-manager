@@ -18,6 +18,11 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
   const [cat, setCat] = useState('');
 
   const handleAdd = () => {
+    if (!cat.trim()) {
+      alert('Category name cannot be blank.');
+      return;
+    }
+    
     const catId = crypto.randomUUID();
 
     dispatch(
