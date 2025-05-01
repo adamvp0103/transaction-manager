@@ -24,6 +24,7 @@ const categoriesSlice = createSlice({
       const exists = state.categories.find(
         (c) =>
           c.name === action.payload.name &&
+          c.type === action.payload.type &&
           c.username === action.payload.username
       );
       if (!exists) state.categories.push(action.payload);

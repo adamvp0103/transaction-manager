@@ -6,6 +6,7 @@ import { deleteTransaction } from '../../features/transactions/transactionsSlice
 import { deleteUser, logout } from '../../features/users/usersSlice';
 import { useState } from 'react';
 import CategorySettings from '../../components/CategorySettings/CategorySettings';
+import styles from './AccountPage.module.scss';
 
 function AccountPage() {
   const currentUser = useAppSelector((state) => state.users.currentUser);
@@ -52,13 +53,24 @@ function AccountPage() {
     return <CategorySettings onClose={() => setShowCategorySettings(false)} />;
 
   return (
-    <div>
-      <h2>Account</h2>
-      <p>Hello, {userData?.name}</p>
-      <button onClick={() => setShowCategorySettings(true)}>Categories</button>
-      <button onClick={handleLogout}>Log Out</button>
-      <button onClick={handleResetAccount}>Reset Account</button>
-      <button onClick={handleDeleteAccount}>Delete Account</button>
+    <div className={styles.container}>
+      <h2 className={styles.pageTitle}>Account</h2>
+      <p className={styles.greeting}>Hello, {userData?.name}</p>
+      <button
+        className={styles.safeButton}
+        onClick={() => setShowCategorySettings(true)}
+      >
+        Categories
+      </button>
+      <button className={styles.safeButton} onClick={handleLogout}>
+        Log Out
+      </button>
+      <button className={styles.dangerButton} onClick={handleResetAccount}>
+        Reset Account
+      </button>
+      <button className={styles.dangerButton} onClick={handleDeleteAccount}>
+        Delete Account
+      </button>
       <Nav />
     </div>
   );

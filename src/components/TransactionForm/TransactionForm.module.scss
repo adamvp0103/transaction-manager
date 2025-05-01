@@ -1,0 +1,91 @@
+@mixin button {
+  flex: 1;
+  border: none;
+  border-radius: 1rem;
+  padding: var(--standard-padding);
+}
+
+.container {
+  margin: var(--container-margins);
+}
+
+.closeButton {
+  @include button;
+  margin-bottom: 1rem;
+  background-color: var(--red);
+  color: #fff;
+  cursor: pointer;
+}
+
+.pageTitle {
+  margin-bottom: 1rem;
+  font-size: var(--page-title-size);
+}
+
+.dualButton {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.inactiveButton {
+  @include button;
+  background-color: var(--light-gray);
+  cursor: pointer;
+}
+
+.activeButton {
+  @include button;
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 1rem;
+  padding: var(--standard-padding);
+}
+
+.fieldHeading {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.activeCategory {
+  @include button;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 0.25rem #0008;
+  box-shadow: inset 0 0 1rem #000;
+}
+
+.inactiveCategory {
+  @include button;
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-shadow: 0 0 0.25rem #0008;
+  cursor: pointer;
+}
+
+.addCategoryButton {
+  @include button;
+  width: 100%;
+  background-color: var(--light-gray);
+  cursor: pointer;
+}
+
+.submitButton {
+  @include button;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  background-color: var(--green);
+  color: #fff;
+  cursor: pointer;
+}

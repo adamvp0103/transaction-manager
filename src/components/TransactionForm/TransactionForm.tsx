@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import CategoryForm from '../CategoryForm/CategoryForm';
 import { addTransaction } from '../../features/transactions/transactionsSlice';
+import styles from './TransactionForm.module.scss';
 
 interface TransactionFormProps {
   onClose: () => void;
@@ -68,21 +69,30 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onClose }) => {
     );
 
   return (
-    <div>
-      <button onClick={onClose}>Close</button>
+    <div className={styles.container}>
+      <button className={styles.closeButton} onClick={onClose}>
+        Close
+      </button>
 
-      <h2>Add Transaction</h2>
+      <h2 className={styles.pageTitle}>Add Transaction</h2>
 
-      <div>
-        <button disabled={!isExpense} onClick={() => setIsExpense(false)}>
+      <div className={styles.dualButton}>
+        <button
+          className={isExpense ? styles.inactiveButton : styles.activeButton}
+          onClick={() => setIsExpense(false)}
+        >
           Income
         </button>
-        <button disabled={isExpense} onClick={() => setIsExpense(true)}>
+        <button
+          className={isExpense ? styles.activeButton : styles.inactiveButton}
+          onClick={() => setIsExpense(true)}
+        >
           Expense
         </button>
       </div>
 
       <input
+        className={styles.input}
         type="number"
         min="0"
         value={amount}
@@ -91,26 +101,32 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onClose }) => {
       />
 
       <input
+        className={styles.input}
         value={party}
         placeholder={isExpense ? 'For' : 'From'}
         onChange={(e) => setParty(e.target.value)}
       />
 
       <input
+        className={styles.input}
         type="date"
         max={formatDate(new Date())}
         value={date}
         onChange={(e) => setDate(e.target.value)}
       />
 
-      <p>Select a category</p>
+      <p className={styles.fieldHeading}>Category</p>
       {/* Buttons used instead of a select element for better visual customization */}
       {userCategories
         .filter((c) => c.type === (isExpense ? 'expense' : 'income'))
         .map((c) => (
           <button
+            className={
+              c.id === category
+                ? styles.activeCategory
+                : styles.inactiveCategory
+            }
             key={c.id}
-            disabled={c.id === category}
             onClick={() => setCategory(c.id)}
             style={{ backgroundColor: c.color }}
           >
@@ -119,10 +135,17 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onClose }) => {
         ))}
       {/* Limit to 10 categories per type per user */}
       {addCategoryAllowed && (
-        <button onClick={() => setShowCategoryForm(true)}>Add Category</button>
+        <button
+          className={styles.addCategoryButton}
+          onClick={() => setShowCategoryForm(true)}
+        >
+          Add Category
+        </button>
       )}
 
-      <button onClick={handleAdd}>Add</button>
+      <button className={styles.submitButton} onClick={handleAdd}>
+        Add
+      </button>
     </div>
   );
 };

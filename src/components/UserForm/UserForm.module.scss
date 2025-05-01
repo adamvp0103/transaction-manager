@@ -1,0 +1,52 @@
+@mixin button {
+  flex: 1;
+  border: none;
+  border-radius: 1rem;
+  padding: var(--standard-padding);
+}
+
+.container {
+  margin: var(--container-margins);
+}
+
+.dualButton {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.inactiveButton {
+  @include button;
+  background-color: var(--light-gray);
+  cursor: pointer;
+}
+
+.activeButton {
+  @include button;
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.pageTitle {
+  margin-bottom: 1rem;
+  font-size: var(--page-title-size);
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 1rem;
+  padding: var(--standard-padding);
+}
+
+.submitButton {
+  @include button;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  background-color: var(--green);
+  color: #fff;
+  cursor: pointer;
+}

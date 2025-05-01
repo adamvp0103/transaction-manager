@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui;
+  font-size: 1rem;
+}
+
+:root {
+  --container-margins: 2rem 1rem 6rem;
+  --standard-padding: 1rem 2rem;
+
+  --page-title-size: 2rem;
+
+  --light-gray: rgb(224, 224, 224);
+  --blue: rgb(0, 94, 255);
+  --green: rgb(56, 223, 89);
+  --red: rgb(228, 60, 22);
+
+  background-color: rgb(243, 243, 243);
+  font-size: 20px;
+}

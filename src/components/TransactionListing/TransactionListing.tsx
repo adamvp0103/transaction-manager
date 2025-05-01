@@ -1,8 +1,6 @@
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import {
-  deleteTransaction,
-  Transaction,
-} from '../../features/transactions/transactionsSlice';
+import { useAppSelector } from '../../app/hooks';
+import { Transaction } from '../../features/transactions/transactionsSlice';
+import styles from './TransactionListing.module.scss';
 
 interface TransactionListingProps {
   transaction: Transaction;
@@ -11,11 +9,12 @@ interface TransactionListingProps {
 const TransactionListing: React.FC<TransactionListingProps> = ({
   transaction,
 }) => {
-  const dispatch = useAppDispatch();
-
   const categoryName = useAppSelector((state) =>
     state.categories.categories.find((c) => c.id === transaction.categoryId)
   )?.name;
+  const categoryColor = useAppSelector((state) =>
+    state.categories.categories.find((c) => c.id === transaction.categoryId)
+  )?.color;
 
   const formatDate = (date: string) => {
     const year = Number(date.slice(0, 4));
@@ -66,23 +65,33 @@ const TransactionListing: React.FC<TransactionListingProps> = ({
   };
 
   return (
-    <li key={transaction.id}>
-      <p>{categoryName}</p>
-      <div>
-        <p>
-          {transaction.type === 'income' ? '+' : '\u2212'} $
-          {transaction.amount.toFixed(2)}
-        </p>
+    <li className={styles.container} key={transaction.id}>
+      <div className={styles.body}>
         <div>
+          <p
+            className={styles.category}
+            style={{ backgroundColor: categoryColor }}
+          >
+            {categoryName}
+          </p>
+          <p
+            className={styles.amount}
+            style={{
+              color:
+                transaction.type === 'income' ? 'var(--green)' : 'var(--red)',
+            }}
+          >
+            {transaction.type === 'income' ? '+' : '\u2212'} $
+            {transaction.amount.toFixed(2)}
+          </p>
+        </div>
+        <div className={styles.details}>
           <p>
             {transaction.type === 'income' ? 'from' : 'to'} {transaction.party}
           </p>
           <p>on {formatDate(transaction.date)}</p>
         </div>
       </div>
-      <button onClick={() => dispatch(deleteTransaction(transaction.id))}>
-        Delete
-      </button>
     </li>
   );
 };

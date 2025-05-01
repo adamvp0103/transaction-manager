@@ -1,0 +1,60 @@
+.container {
+  margin: var(--container-margins);
+}
+
+.closeButton {
+  border: none;
+  border-radius: 1rem;
+  padding: var(--standard-padding);
+  margin-bottom: 1rem;
+  background-color: var(--red);
+  color: #fff;
+  cursor: pointer;
+}
+
+.pageTitle {
+  margin-bottom: 1rem;
+  font-size: var(--page-title-size);
+}
+
+.sectionHeading {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.list {
+  list-style: none;
+}
+
+.category {
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 0.25rem #0008;
+}
+
+.removeButton {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--red);
+  font-size: 0.75rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.addButton {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}

@@ -1,0 +1,19 @@
+.container {
+  margin: var(--container-margins);
+}
+
+.pageTitle {
+  margin-bottom: 1rem;
+  font-size: var(--page-title-size);
+}
+
+.button {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 1rem;
+  padding: var(--standard-padding);
+  background-color: var(--green);
+  color: #fff;
+  cursor: pointer;
+}

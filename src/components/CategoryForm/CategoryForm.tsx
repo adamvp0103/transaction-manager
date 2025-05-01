@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { addCategory } from '../../features/categories/categoriesSlice';
+import styles from './CategoryForm.module.scss';
 
 interface CategoryFormProps {
   onClose: () => void;
@@ -76,33 +77,41 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
   };
 
   return (
-    <div>
-      <button onClick={onClose}>Close</button>
+    <div className={styles.container}>
+      <button className={styles.closeButton} onClick={onClose}>
+        Close
+      </button>
 
-      <h2>Add {isExpense ? 'Expense' : 'Income'} Category</h2>
+      <h2 className={styles.pageTitle}>
+        Add {isExpense ? 'Expense' : 'Income'} Category
+      </h2>
 
       <input
+        className={styles.input}
         value={cat}
         placeholder="Category"
         onChange={(e) => setCat(e.target.value)}
         required
       />
 
-      <p>Select a color</p>
-      {/* Buttons used instead of a select element for better visual customization */}
-      {availableColors.map((c) => (
-        <button
-          key={c}
-          disabled={c === color}
-          onClick={() => setColor(c)}
-          style={{
-            backgroundColor: c,
-            border: c === color ? '1px solid black' : 'none',
-          }}
-        ></button>
-      ))}
+      <p className={styles.fieldHeading}>Color</p>
+      <div className={styles.colorButtonContainer}>
+        {/* Buttons used instead of a select element for better visual customization */}
+        {availableColors.map((c) => (
+          <button
+            className={c === color ? styles.activeColor : styles.inactiveColor}
+            key={c}
+            onClick={() => setColor(c)}
+            style={{
+              backgroundColor: c,
+            }}
+          ></button>
+        ))}
+      </div>
 
-      <button onClick={handleAdd}>Add</button>
+      <button className={styles.submitButton} onClick={handleAdd}>
+        Add
+      </button>
     </div>
   );
 };

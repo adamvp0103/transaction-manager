@@ -1,0 +1,63 @@
+@mixin button {
+  flex: 1;
+  border: none;
+  border-radius: 1rem;
+  padding: var(--standard-padding);
+}
+
+.container {
+  margin: var(--container-margins);
+}
+
+.pageTitle {
+  margin-bottom: 1rem;
+  font-size: var(--page-title-size);
+}
+
+.sectionHeading {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.balance {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.dualButton {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.inactiveButton {
+  @include button;
+  background-color: var(--light-gray);
+  cursor: pointer;
+}
+
+.activeButton {
+  @include button;
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 1rem;
+  padding: var(--standard-padding);
+}
+
+.total {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.total:last-of-type {
+  margin-bottom: 1rem;
+}

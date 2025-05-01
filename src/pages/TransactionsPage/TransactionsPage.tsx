@@ -3,6 +3,7 @@ import Nav from '../../components/Nav/Nav';
 import TransactionForm from '../../components/TransactionForm/TransactionForm';
 import { useAppSelector } from '../../app/hooks';
 import TransactionListing from '../../components/TransactionListing/TransactionListing';
+import styles from './TransactionsPage.module.scss';
 
 function TransactionsPage() {
   const currentUser = useAppSelector((state) => state.users.currentUser);
@@ -18,10 +19,13 @@ function TransactionsPage() {
     return <TransactionForm onClose={() => setShowTransactionForm(false)} />;
 
   return (
-    <div>
-      <h2>Transactions</h2>
+    <div className={styles.container}>
+      <h2 className={styles.pageTitle}>Transactions</h2>
 
-      <button onClick={() => setShowTransactionForm(true)}>
+      <button
+        className={styles.button}
+        onClick={() => setShowTransactionForm(true)}
+      >
         Add Transaction
       </button>
 

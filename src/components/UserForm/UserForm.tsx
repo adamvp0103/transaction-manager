@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../app/hooks';
 import { login, register } from '../../features/users/usersSlice';
+import styles from './UserForm.module.scss';
 
 function UserForm() {
   const dispatch = useAppDispatch();
@@ -15,20 +16,32 @@ function UserForm() {
   };
 
   return (
-    <div>
-      <div>
-        <button onClick={() => setIsRegister(false)}>Log In</button>
-        <button onClick={() => setIsRegister(true)}>Register</button>
+    <div className={styles.container}>
+      <div className={styles.dualButton}>
+        <button
+          className={isRegister ? styles.inactiveButton : styles.activeButton}
+          onClick={() => setIsRegister(false)}
+        >
+          Log In
+        </button>
+        <button
+          className={isRegister ? styles.activeButton : styles.inactiveButton}
+          onClick={() => setIsRegister(true)}
+        >
+          Register
+        </button>
       </div>
 
-      <h2>{isRegister ? 'Register' : 'Log In'}</h2>
+      <h2 className={styles.pageTitle}>{isRegister ? 'Register' : 'Log In'}</h2>
 
       <input
+        className={styles.input}
         value={username}
         placeholder="Username"
         onChange={(e) => setUsername(e.target.value)}
       />
       <input
+        className={styles.input}
         type="password"
         value={password}
         placeholder="Password"
@@ -36,13 +49,14 @@ function UserForm() {
       />
       {isRegister && (
         <input
+          className={styles.input}
           value={name}
           placeholder="First Name"
           onChange={(e) => setName(e.target.value)}
         />
       )}
 
-      <button onClick={handleSubmit}>
+      <button className={styles.submitButton} onClick={handleSubmit}>
         {isRegister ? 'Register' : 'Log In'}
       </button>
     </div>

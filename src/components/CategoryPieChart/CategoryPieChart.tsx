@@ -1,8 +1,9 @@
-import { useAppSelector } from '../../app/hooks';
 import { Category } from '../../features/categories/categoriesSlice';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Transaction } from '../../features/transactions/transactionsSlice';
+import styles from './CategoryPieChart.module.scss';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface CategoryPieChartProps {
@@ -31,7 +32,11 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = ({
     ],
   };
 
-  return <Pie data={data} />;
+  return (
+    <div className={styles.container}>
+      <Pie data={data} />
+    </div>
+  );
 };
 
 export default CategoryPieChart;

@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { removeCategory } from '../../features/categories/categoriesSlice';
 import { deleteTransaction } from '../../features/transactions/transactionsSlice';
 import CategoryForm from '../CategoryForm/CategoryForm';
+import styles from './CategorySettings.module.scss';
 
 interface CategorySettingsProps {
   onClose: () => void;
@@ -54,41 +55,63 @@ const CategorySettings: React.FC<CategorySettingsProps> = ({ onClose }) => {
     );
 
   return (
-    <div>
-      <button onClick={onClose}>Close</button>
+    <div className={styles.container}>
+      <button className={styles.closeButton} onClick={onClose}>
+        Close
+      </button>
 
-      <h2>Categories</h2>
+      <h2 className={styles.pageTitle}>Categories</h2>
 
-      <h3>INCOME</h3>
-      <ul>
+      <h3 className={styles.sectionHeading}>Income</h3>
+      <ul className={styles.list}>
         {incomeCategories.map((c) => (
-          <li key={c.id}>
+          <li
+            className={styles.category}
+            key={c.id}
+            style={{ backgroundColor: c.color }}
+          >
             {c.name}
-            <button onClick={() => handleRemove(c.id)}>
+            <button
+              className={styles.removeButton}
+              onClick={() => handleRemove(c.id)}
+            >
               Remove Category & Transactions
             </button>
           </li>
         ))}
       </ul>
       {incomeCategories.length < 10 && (
-        <button onClick={() => setShowIncomeCategoryForm(true)}>
+        <button
+          className={styles.addButton}
+          onClick={() => setShowIncomeCategoryForm(true)}
+        >
           Add Category
         </button>
       )}
 
-      <h3>EXPENSE</h3>
-      <ul>
+      <h3 className={styles.sectionHeading}>Expense</h3>
+      <ul className={styles.list}>
         {expenseCategories.map((c) => (
-          <li key={c.id}>
+          <li
+            className={styles.category}
+            key={c.id}
+            style={{ backgroundColor: c.color }}
+          >
             {c.name}
-            <button onClick={() => handleRemove(c.id)}>
+            <button
+              className={styles.removeButton}
+              onClick={() => handleRemove(c.id)}
+            >
               Remove Category & Transactions
             </button>
           </li>
         ))}
       </ul>
       {expenseCategories.length < 10 && (
-        <button onClick={() => setShowExpenseCategoryForm(true)}>
+        <button
+          className={styles.addButton}
+          onClick={() => setShowExpenseCategoryForm(true)}
+        >
           Add Category
         </button>
       )}
