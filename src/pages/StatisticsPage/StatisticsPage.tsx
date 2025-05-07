@@ -148,7 +148,7 @@ function StatisticsPage() {
           areExpenses={false}
         />
       ) : (
-        'Chart not available'
+        <span className={styles.noDataMessage}>No data</span>
       )}
 
       <h3 className={styles.sectionHeading}>Expense Categories</h3>
@@ -171,7 +171,7 @@ function StatisticsPage() {
           areExpenses={true}
         />
       ) : (
-        'Chart not available'
+        <span className={styles.noDataMessage}>No data</span>
       )}
 
       <Nav />

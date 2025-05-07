@@ -20,3 +20,15 @@
   background-color: rgb(243, 243, 243);
   font-size: 20px;
 }
+
+@media screen and (min-width: 641px) {
+  :root {
+    --container-margins: 2rem 4rem 6rem;
+  }
+}
+
+@media screen and (min-width: 1008px) {
+  :root {
+    --container-margins: 2rem 8rem 6rem;
+  }
+}

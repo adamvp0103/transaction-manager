@@ -61,3 +61,11 @@
 .total:last-of-type {
   margin-bottom: 1rem;
 }
+
+.noDataMessage {
+  display: block;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-style: italic;
+  color: #0008;
+}
