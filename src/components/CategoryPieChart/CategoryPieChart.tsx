@@ -17,6 +17,7 @@ const CategoryPieChart: React.FC<CategoryPieChartProps> = ({
   transactions,
   areExpenses,
 }) => {
+  // Format data to work with Chart.js
   const data = {
     labels: categories.map((c) => c.name),
     datasets: [

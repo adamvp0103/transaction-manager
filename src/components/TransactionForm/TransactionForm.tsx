@@ -9,6 +9,7 @@ interface TransactionFormProps {
 }
 
 const TransactionForm: React.FC<TransactionFormProps> = ({ onClose }) => {
+  // Format date object to YYYY-MM-DD string for consistency in HTML date input elements
   const formatDate = (date: Date) => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -26,16 +27,19 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onClose }) => {
 
   const [isExpense, setIsExpense] = useState(false);
   const [amount, setAmount] = useState('');
-  const [party, setParty] = useState('');
+  const [party, setParty] = useState(''); // Who the money is from (for income) or who the money is to (for expenses)
   const [date, setDate] = useState(formatDate(new Date()));
   const [category, setCategory] = useState('');
   const [showCategoryForm, setShowCategoryForm] = useState(false);
 
+  // Limit each user to 10 income categories and 10 expense categories
   const addCategoryAllowed = isExpense
     ? expenseCategories.length < 10
     : incomeCategories.length < 10;
 
+  // Add a new transaction
   const handleAdd = () => {
+    // Category selection is required
     if (!category) {
       alert('Please select a category.');
       return;
@@ -52,7 +56,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onClose }) => {
         username: currentUser as string,
       })
     );
-    onClose();
+    onClose(); // Close the transaction form
   };
 
   useEffect(() => {

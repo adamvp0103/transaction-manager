@@ -24,6 +24,8 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
   const dispatch = useAppDispatch();
   const [cat, setCat] = useState('');
 
+  // Category color options (will be filtered by availability based on user selections)
+  // NOTE: Should be moved to a separate file in the future for modularity
   const categoryColors = isExpense
     ? [
         'hsl(0, 100%, 50%)',
@@ -49,12 +51,14 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
         'hsl(165, 100%, 25%)',
         'hsl(165, 100%, 75%)',
       ];
+  // Get the colors that the user hasn't already used
   const availableColors = categoryColors.filter((clr) =>
     targetCategories.every((ctg) => ctg.color !== clr)
   );
 
   const [color, setColor] = useState(availableColors[0]);
 
+  // Add a custom category
   const handleAdd = () => {
     if (!cat.trim()) {
       alert('Category name cannot be blank.');
@@ -72,8 +76,8 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
         color,
       })
     );
-    setCategory(catId);
-    onClose();
+    setCategory(catId); // Set the selected category in the transaction form to this newly created category
+    onClose(); // Close the category form
   };
 
   return (

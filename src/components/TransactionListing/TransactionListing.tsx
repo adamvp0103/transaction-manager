@@ -16,6 +16,8 @@ const TransactionListing: React.FC<TransactionListingProps> = ({
     state.categories.categories.find((c) => c.id === transaction.categoryId)
   )?.color;
 
+  // Format YYYY-MM-DD string to a more readable, user-friendly string
+  // NOTE: Should be moved to a separate file in the future for modularity
   const formatDate = (date: string) => {
     const year = Number(date.slice(0, 4));
     let month;

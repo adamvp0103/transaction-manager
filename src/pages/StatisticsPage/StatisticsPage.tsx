@@ -6,6 +6,8 @@ import CategoryPieChart from '../../components/CategoryPieChart/CategoryPieChart
 import styles from './StatisticsPage.module.scss';
 
 function StatisticsPage() {
+  // Format date object to YYYY-MM-DD string for consistency in HTML date input elements
+  // NOTE: Should be moved to a separate file in the future for modularity
   const formatDate = (date: Date) => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -17,8 +19,11 @@ function StatisticsPage() {
   const userTransactions = useAppSelector((state) =>
     state.transactions.transactions.filter((t) => t.username === currentUser)
   );
+
+  // Represents transactions that fall within the user's specified date window (if any)
   const [relevantTransactions, setRelevantTransactions] =
     useState(userTransactions);
+
   const userCategories = useAppSelector((state) =>
     state.categories.categories.filter((c) => c.username === currentUser)
   );
@@ -36,6 +41,7 @@ function StatisticsPage() {
   });
   const [toDate, setToDate] = useState(formatDate(new Date()));
 
+  // Re-evaluate relevant transactions if window mode is entered/exited or if the window is changed
   useEffect(() => {
     if (windowMode) {
       setRelevantTransactions(

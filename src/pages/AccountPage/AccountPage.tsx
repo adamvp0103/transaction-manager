@@ -29,6 +29,7 @@ function AccountPage() {
     dispatch(logout());
   };
 
+  // Removes an account's data without deleting the account itself
   const handleResetAccount = () => {
     // Remove user's categories
     userCategories.forEach((c) => {
@@ -41,10 +42,11 @@ function AccountPage() {
     });
   };
 
+  // Delete the account and its data completely
   const handleDeleteAccount = () => {
-    handleResetAccount();
+    handleResetAccount(); // Delete the account's data
 
-    // Delete user's account
+    // Delete the account itself
     navigate('/'); // Return to transactions (home) page for next user
     dispatch(deleteUser(currentUser as string));
   };

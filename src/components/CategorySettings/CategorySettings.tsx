@@ -24,18 +24,20 @@ const CategorySettings: React.FC<CategorySettingsProps> = ({ onClose }) => {
   const [showIncomeCategoryForm, setShowIncomeCategoryForm] = useState(false);
   const [showExpenseCategoryForm, setShowExpenseCategoryForm] = useState(false);
 
+  // Delete a category and all of the transactions that fall under it
   const handleRemove = (id: string) => {
-    // Remove transactions
+    // Delete transactions
     userTransactions
       .filter((t) => t.categoryId === id)
       .forEach((t) => {
         dispatch(deleteTransaction(t.id));
       });
 
-    // Remove category
+    // Delete category
     dispatch(removeCategory(id));
   };
 
+  // Show form to add a new INCOME category
   if (showIncomeCategoryForm)
     return (
       <CategoryForm
@@ -45,6 +47,7 @@ const CategorySettings: React.FC<CategorySettingsProps> = ({ onClose }) => {
       />
     );
 
+  // Show form to add a new EXPENSE category
   if (showExpenseCategoryForm)
     return (
       <CategoryForm
