@@ -13,9 +13,12 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<TransactionsPage />} />
-      <Route path="/account" element={<AccountPage />} />
-      <Route path="/statistics" element={<StatisticsPage />} />
+      <Route path="/transaction-manager/" element={<TransactionsPage />} />
+      <Route path="/transaction-manager/account" element={<AccountPage />} />
+      <Route
+        path="/transaction-manager/statistics"
+        element={<StatisticsPage />}
+      />
     </Routes>
   );
 }

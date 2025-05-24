@@ -6,13 +6,13 @@ function Nav() {
   // Navigate between account, transactions, and statistics pages
   return (
     <nav className={styles.container}>
-      <Link to="/account">
+      <Link to="/transaction-manager/account">
         <FaUser />
       </Link>
-      <Link to="/">
+      <Link to="/transaction-manager/">
         <FaDollarSign />
       </Link>
-      <Link to="/statistics">
+      <Link to="/transaction-manager/statistics">
         <FaChartPie />
       </Link>
     </nav>
