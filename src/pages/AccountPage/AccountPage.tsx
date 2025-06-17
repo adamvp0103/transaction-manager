@@ -25,7 +25,7 @@ function AccountPage() {
   const [showCategorySettings, setShowCategorySettings] = useState(false);
 
   const handleLogout = () => {
-    navigate('/'); // Return to transactions (home) page for next user
+    navigate('/transaction-manager/'); // Return to transactions (home) page for next user
     dispatch(logout());
   };
 
