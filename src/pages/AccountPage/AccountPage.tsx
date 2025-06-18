@@ -47,7 +47,7 @@ function AccountPage() {
     handleResetAccount(); // Delete the account's data
 
     // Delete the account itself
-    navigate('/'); // Return to transactions (home) page for next user
+    navigate('/transaction-manager/'); // Return to transactions (home) page for next user
     dispatch(deleteUser(currentUser as string));
   };
 
